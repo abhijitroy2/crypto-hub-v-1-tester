@@ -72,9 +72,13 @@ namespace Phoneword
                 "Would you like to call" + translatedNumber + "?",
                 "Yes",
                 "No"))
-            {
-                //todo dial
-            }
+            
+                {
+                    var dialer = DependencyService.Get<IDialer>();
+                    if (dialer != null)
+                        await dialer.DialAsync(translatedNumber);
+                }
+            
         }
         }
 }
